@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<rect x="0" y="0" width="1200" height="675" rx="16" fill="#161616"/>
+<rect x="0" y="0" width="1200" height="130" rx="16" fill="#1E1E1E"/>
+<rect x="48" y="34" width="64" height="64" rx="12" fill="#FF7B1D"/>
+<text x="80" y="80" font-family="Arial,sans-serif" font-size="36" font-weight="bold" fill="#fff" text-anchor="middle">Q</text>
+<text x="130" y="62" font-family="Arial,sans-serif" font-size="30" font-weight="bold" fill="#F5F5F5">Evidence discipline</text>
+<text x="130" y="94" font-family="Arial,sans-serif" font-size="19" fill="#B0B0B0">Per-TC naming · 2-second rule · 45 screenshots</text>
+<rect x="48" y="160" width="1104" height="110" rx="12" fill="#232323"/><text x="72" y="198" font-family="Arial,sans-serif" font-size="21" fill="#F5F5F5">Every shot answers:  “What am I looking at?”</text><text x="72" y="228" font-family="Arial,sans-serif" font-size="21" fill="#B0B0B0">TC-PIM-004-Aarav-search.png · TC-PIM-002-E2001-duplicate.png · REG-010-my-records.png</text><rect x="48" y="290" width="540" height="170" rx="12" fill="#232323"/><text x="72" y="328" font-family="Arial,sans-serif" font-size="21" fill="#F5F5F5">Naming (never Screenshot1.png)</text><text x="72" y="358" font-family="Arial,sans-serif" font-size="21" fill="#B0B0B0">TC-&lt;module&gt;-&lt;nn&gt;-&lt;what&gt;.png</text><text x="72" y="388" font-family="Arial,sans-serif" font-size="21" fill="#B0B0B0">REG-&lt;nn&gt;-&lt;what&gt;.png</text><rect x="612" y="290" width="540" height="170" rx="12" fill="#232323"/><text x="636" y="328" font-family="Arial,sans-serif" font-size="21" fill="#F5F5F5">Where it lives</text><text x="636" y="358" font-family="Arial,sans-serif" font-size="21" fill="#B0B0B0">evidence/smoke/ (36 shots)</text><text x="636" y="388" font-family="Arial,sans-serif" font-size="21" fill="#B0B0B0">evidence/regression/ (10 shots)</text>
+<rect x="48" y="480" width="1104" height="100" rx="12" fill="#232323"/><text x="72" y="518" font-family="Arial,sans-serif" font-size="21" fill="#F5F5F5">Why it matters:  named evidence is what exposed the voided Search-box probe before it became a false bug</text>
+<text x="1152" y="640" font-family="Arial,sans-serif" font-size="18" fill="#B0B0B0" text-anchor="end">6 / 8 · orangehrm-manual-qa</text>
+</svg>
