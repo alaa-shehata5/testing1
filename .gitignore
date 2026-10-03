@@ -1,0 +1,7 @@
+*.xlsx
+!docs/04-test-cases/test-cases.xlsx
+!docs/05-traceability/rtm.xlsx
+!docs/06-execution/execution-results.xlsx
+.env
+*.png
+!bugs/**/evidence/*.png

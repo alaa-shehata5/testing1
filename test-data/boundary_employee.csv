@@ -1,0 +1,5 @@
+firstName,lastName,employeeId,dob,case,notes
+A,Li,E2004,2008-10-03,min-name-length,single-char first name boundary
+Aaravabcdefghijabcdefghijabcdefghijabcdefghij,Sharma,E2005,1960-01-01,max-name-length,50-char first name boundary
+Boundary,User,E2006,2008-10-03,min-age,18y exactly on 2026-10-03
+Boundary,Senior,E2007,1926-10-03,max-age,100y exactly on 2026-10-03

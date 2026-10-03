@@ -1,0 +1,3 @@
+leaveType,fromDate,toDate,duration,comment
+Annual,2030-06-02,2030-06-02,Full Day,synthetic valid
+Annual,2030-06-05,2030-06-04,Full Day,End<Start invalid

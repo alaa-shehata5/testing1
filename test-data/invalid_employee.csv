@@ -1,0 +1,5 @@
+firstName,lastName,employeeId,dob,case,notes
+,,E2008,,empty-required,all required fields empty
+John123,Doe456,E2009,not-a-date,numbers-in-name+bad-date,numeric name and non-date dob
+Aarav,Sharma,E2001,1990-01-15,duplicate-id,employeeId already used in valid_employee.csv
+Future,Person,E2010,2030-01-01,future-dob,date of birth in the future

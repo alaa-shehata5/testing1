@@ -1,0 +1,7 @@
+query,case,expected,notes
+Aarav,exact-first-name,1 hit E2001,synthetic valid data
+aarav,case-insensitive,1 hit E2001,lowercase variant
+Aar,partial-prefix,>=1 hit,prefix match
+Sharma ,trailing-space,1 hit E2001 or validation,whitespace handling
+ZzzNoMatch,no-result,empty state,empty-list message check
+E2003,employee-id-search,1 hit John Okafor,id search

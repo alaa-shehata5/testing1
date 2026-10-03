@@ -1,0 +1,9 @@
+leaveType,fromDate,toDate,duration,case,notes
+Annual,2020-01-15,2020-01-15,Full Day,past-date,single past day invalid
+Annual,2026-10-03,2026-10-03,Full Day,today,single current day 2026-10-03
+Annual,2030-06-02,2030-06-02,Full Day,future-single,single future day valid
+Annual,2030-06-02,2030-06-02,Half Day - Morning,future-half,half-day boundary
+Annual,2030-06-05,2030-06-04,Full Day,end-before-start,End<Start invalid
+Annual,2030-06-02,2030-06-02,Full Day,zero-day,from=to single day reference
+Annual,2030-01-06,2030-12-20,Full Day,long-range,near-year-long range boundary
+Annual,2030-06-07,2030-06-07,Full Day,weekend-Sunday,Sunday 2030-06-07 weekend check
