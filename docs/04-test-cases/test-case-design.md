@@ -2,7 +2,9 @@
 
 ## Status
 
-The workbook contains 54 **planned, unexecuted** cases. Cases for Time,
+The workbook contains 54 planned cases; some have been executed and their
+Actual Result, Status, and Notes fields are synchronized from
+`docs/06-execution/execution-results.xlsx`. Cases for Time,
 Recruitment, and Reports are conditional on those modules being present and
 usable in the pinned 5.8.1 build. Confirm module availability and freeze the
 final allocation before execution; do not silently mark absent-module cases as
@@ -17,8 +19,10 @@ Result, Status, Defect ID, Notes.
 
 Each case has a stable ID, a specific requirement mapping, concrete
 preconditions/data, reproducible steps, and an observable expected result.
-Actual Result and Defect ID remain empty until execution; all planned cases
-start as `Not Run`.
+Expected results remain frozen after execution. If execution deviates from
+the planned data, record the observation, do not count it as a pass for that
+case, and rerun or process a prospective test-design revision through change
+control.
 
 ## Allocation
 

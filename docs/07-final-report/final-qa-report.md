@@ -121,6 +121,10 @@ left frozen per process; no BUG was filed for correct application behavior.
    the boundary.
 3. Time attendance completes a full punch-in → visible record → punch-out
    cycle with confirmations.
+4. Specified-data conformance: E2001 (Aarav Sharma, DOB 1990-01-15) was
+   seeded and retrieved; 'Aarav' search returns exactly E2001 and Reset
+   restores all 6 rows; 'ZzzNoMatch' yields "No Records Found" with no stale
+   rows — the name field submits free text as a filter.
 4. The highest-impact open item is leave submission: ESS Apply Leave renders
    "No Leave Types with Leave Balance", so the entire submit/cancel/approve/
    reject chain (12 cases) awaits entitlement provisioning — a setup task,

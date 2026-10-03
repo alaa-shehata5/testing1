@@ -1,9 +1,9 @@
 # TEST-CYCLE-01 — Execution Summary
 
-> Status: **In progress — Day-1 Smoke partial (2026-10-03).** Figures below are
-> recorded results with evidence, not plan counts. Nothing was rewritten:
-> Expected Results in `test-cases.xlsx` are frozen; mismatches are recorded as
-> Fail/Blocked with notes, never edited to force a pass.
+> Status: **In progress — Smoke, exploratory probes, and partial regression
+> completed (2026-10-03).** Figures below are reconciled against
+> `execution-results.xlsx`; `test-cases.xlsx` and `rtm.xlsx` are synchronized
+> to that log. Frozen expected results were not changed after execution.
 
 Env: Ubuntu 24.04.5 LTS, Firefox 155.0 primary (Playwright `firefox-1543`) /
 Chrome for Testing 153.0.8010.12 secondary, OrangeHRM 5.8.1 pinned
@@ -18,7 +18,7 @@ Statuses: Pass/Fail/Blocked/N/A/Not Run. Detail in execution-results.xlsx.
 | Status | Count |
 |---|---:|
 | Passed | 17 |
-| Failed | 2 (both test-design wording, NOT SUT defects — no BUG filed) |
+| Failed | 2 (test-design wording, NOT SUT defects — no BUG filed) |
 | Blocked | 2 (leave entitlement precondition missing) |
 | Not Run | 33 (functional + exploratory days pending) |
 | N/A | 0 |
@@ -27,6 +27,7 @@ Statuses: Pass/Fail/Blocked/N/A/Not Run. Detail in execution-results.xlsx.
 | Pass % (Passed / Executed) | 81.0% |
 | Fail % (Failed / Executed) | 9.5% |
 
+
 Blocked is never counted as Passed.
 
 ## Day-1 Smoke outcomes
@@ -34,17 +35,22 @@ Blocked is never counted as Passed.
 - Auth/session: TC-AUTH-001,003,004,005,006,007,008 Pass (login controls,
   invalid/unknown/empty/whitespace rejection with generic "Invalid
   credentials" or inline "Required", logout, back-button + direct-URL guard).
-- TC-AUTH-002 Fail (recorded, not rewritten): ESS lands correctly with
-  restricted 8-item nav, but Expected text says "PIM/Leave visible" while PIM
-  is correctly hidden for ESS. Test-design correction needed; no SUT bug.
+- TC-AUTH-002 Fail (recorded, expected not rewritten): ESS lands correctly
+  with restricted 8-item nav, but the case expected PIM to be visible. PIM is
+  correctly hidden for this ESS role. This is an invalid test expectation,
+  not an SUT defect.
 - Dashboard/nav: TC-DASH-001,002,004 Pass (12-item admin nav, 8-item ESS nav,
   module routing PIM/Leave/Time/Recruitment, post-logout redirect).
 - Leave: TC-LEAVE-001,002 Blocked — ESS Apply Leave renders "No Leave Types
   with Leave Balance". Entitlement provisioning is the entry task before any
   leave-submit assertion.
-- PIM list page loads (table + 3 rows, evidence
-  `TC-PIM-004-employee-list.png`) but exact-search assertion not yet executed —
-  TC-PIM-004 stays Not Run.
+- PIM conforming rerun (2026-10-03, specified data): E2001 (Aarav Sharma, DOB
+  1990-01-15) created+retrievable with persisting DOB (TC-PIM-001/007 Pass);
+  empty-required + duplicate E2001 blocked with still exactly 1 record
+  (TC-PIM-002 Pass); 'Aarav' autocomplete → exactly E2001, Reset → 6 rows
+  (TC-PIM-004 Pass); 'ZzzNoMatch' → 0 cards + "No Records Found"
+  (TC-PIM-005 Pass). Exploratory E2091/E2092/9999 probes retained as supporting
+  evidence.
 - Chrome: login + dashboard URL reached (evidence
   `TC-DASH-003-chrome-dashboard.png`); widget-by-widget parity comparison
   pending — TC-DASH-003 stays Not Run.
@@ -63,12 +69,17 @@ TC-TIME-001-ess-timesheet.png.
 
 ## Phase 9 discovery (2026-10-03, SES-2026-10-03-01)
 
-- PIM: TC-PIM-001 Pass (E2091 created+retrievable), TC-PIM-002 Pass
-  (empty-required + duplicate E2091 both blocked, still 1 record),
-  TC-PIM-003 Fail-recorded (50-char assumption wrong; true limit 30 —
-  30 saved+retrievable as E2092, 31 rejected; app correct, test-design fix
-  needed), TC-PIM-004 Pass (autocomplete → exactly 1 card),
-  TC-PIM-005 Pass (ID 9999 → "No Records Found", no stale rows).
+- PIM conforming rerun resolved the planned-input dispute by execution:
+  all five cases rerun with specified data (see Day-1 update above). All pass;
+  free-text name queries ARE submitted as filters (select-only theory
+  disproven by the ZzzNoMatch rerun).
+- TC-PIM-003 Fail-recorded (50-char assumption wrong; true limit 30 —
+  30 saved+retrievable as E2092, 31 rejected; app validation is consistent,
+  test expectation was unsupported). This is a test-design failure, not an
+  SUT defect. Expected remains unchanged in the execution record; update the
+  case through change control before a future run.
+- The E2091 edit evidence from REG-006 is retained as supporting evidence;
+  the TC-PIM-007 Pass above comes from the conforming E2001 run.
 - Auth edge: 500-char + script/quote input rejected safely (no session);
   repeat-login redirect correct (exploratory note, no defect).
 - Verified SUT defects filed: **0**. `bugs/BUG-AUTH-001` / `bugs/BUG-LEAVE-001`
@@ -86,17 +97,16 @@ TC-TIME-001-ess-timesheet.png.
   REG-001/002/003/004/005/006/008/010/011 Pass; REG-007/009 Blocked
   (leave-entitlement precondition still unmet — nothing submittable, nothing
   cancellable). Detail: `docs/06-execution/regression-results.xlsx`.
-- New executions folded into the totals above: TC-PIM-007 Pass (E2091 edit
-  persists after reload), TC-TIME-001/002 Pass (ESS punch-in → visible record
-  → punch-out, all "Successfully Saved"). Synthetic records only
+- New results reflected in the totals above: TC-PIM-007 Pass (conforming
+  E2001 run; E2091 evidence retained as supporting). TC-TIME-001/002 Pass (ESS punch-in → visible record →
+  punch-out, both "Successfully Saved"). Synthetic records only
   (E2094 created; attendance punched in+out same day leaving a completed pair).
 
 ## Next entry tasks (not results)
 
 1. Provision leave type + entitlement/balance for qa_ess, then execute
    TC-LEAVE-001–012.
-2. Correct TC-AUTH-002 Expected wording (My Info/Leave visible; Admin/PIM
-   absent) through the test-design change process — Expected stays frozen
-   until then.
-3. Functional days: PIM search/create/edit, Profile, Time punch, Recruitment,
-   Reports, UI/keyboard, compat matrix.
+2. Revise case expectations for TC-AUTH-002 and TC-PIM-003 through documented
+   change control before any repeat execution. Keep prior outcomes immutable.
+3. Continue unrun Profile, remaining PIM, Time, Recruitment, Reports,
+   UI/keyboard, and compatibility cases.

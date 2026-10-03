@@ -7,14 +7,21 @@
   special/repeat, dashboard + nav routing, logout/back/direct-URL, employee
   exact/partial/case/ID/no-match/reset search, employee
   valid/empty/duplicate/30/31/50-char create, detail view load.
-- Outcome: every conclusive probe matched defensible expected behavior.
-  Verified SUT defect count from this session: **0**. No `bugs/BUG-*/`
-  report filed: `BUG-AUTH-001` and `BUG-LEAVE-001` remain unfilled templates
-  by design. Reporting zero is the honest result; no metrics were fabricated
-  to reach a quota.
-- Test-design flags (NOT SUT defects, no BUG filed, Expected frozen):
-  TC-AUTH-002 (ESS wording claims PIM visible; PIM correctly hidden) and
-  TC-PIM-003 (assumes 50-char max; true limit is 30 with clear messaging).
+- Outcome: among exploratory probes with a defensible expected result, no
+  SUT defect was verified. The two failed test assertions below are test
+  design issues, not product failures. Verified SUT defect count from this
+  session: **0**. No `bugs/BUG-*/` report filed; bug-report files remain
+  templates by design.
+- Test-design issues (not SUT defects; original expected results remain
+  unchanged in the execution record): TC-AUTH-002 expected PIM in the ESS
+  navigation although the role correctly hides it; TC-PIM-003 assumed a
+  50-character name limit although the observed limit is 30.
+- Update 2026-10-03 (conforming rerun SES-2026-10-03-02): the five PIM cases
+  were rerun with their specified data (E2001/Aarav/ZzzNoMatch) and all pass.
+  The exploratory E2091/E2092/9999 observations stand as supporting evidence.
+  Correction: free-text name queries ARE submitted as filters — the ZzzNoMatch
+  rerun returned 0 cards with "No Records Found", disproving the earlier
+  select-only theory. TC-PIM-005 has no test-design issue.
 
 ## F-02 (2026-10-03): Voided probe error — unlabeled global Search box
 
