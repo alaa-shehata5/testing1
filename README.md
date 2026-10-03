@@ -1,41 +1,62 @@
-# OrangeHRM Manual QA Testing
+# OrangeHRM Manual QA — End-to-End Testing of an HR Management Platform
 
-> End-to-end manual QA assessment of an open-source HR management platform.
+> Independent manual QA engagement against OrangeHRM 5.8.1 (self-hosted, pinned): charter → derived requirements → 54-case suite → traceability → evidence-backed execution → regression → final report.
 
-[View Test Plan](docs/03-test-plan/test-plan.md) | [View Test Cases](docs/04-test-cases/test-case-design.md) | [View RTM](docs/05-traceability/rtm.md) | [View Bug Reports](bugs/BUG-LEAVE-001/bug-report.md) | [View Final Report](docs/07-final-report/final-qa-report.md) | [Phased Agent Plan](orangehrm-manual-qa-phased-plan.md)
+[View Test Plan](docs/03-test-plan/test-plan.md) | [View Test Cases](docs/04-test-cases/test-case-design.md) | [View RTM](docs/05-traceability/rtm.md) | [View Bug Reports](bugs/) | [View Final Report](docs/07-final-report/final-qa-report.md)
 
-## Project Snapshot
+## Snapshot
 
 ```text
-Application: OrangeHRM Starter / Open Source (pinned self-hosted build)
-Testing Type: Manual QA (functional, smoke, sanity, regression, exploratory, BVA/EP, state, UI, basic a11y, compat)
-Test Cases: 54 planned (Auth 8, Dashboard 4, PIM 10, Profile 6, Leave 12, Time 5, Recruitment 4, Reports 3, UI 2)
-Modules: pending pinned-build confirmation | Defects: not yet reported | Environment: Firefox / Chromium / Linux 1920×1080
+App:         OrangeHRM Starter/Open Source 5.8.1 (orangehrm/orangehrm:5.8.1@sha256:5eb278ac…)
+Type:        Manual QA (functional, smoke, regression, exploratory, BVA/EP, state, UI, compat)
+Cases:       54 planned — 21 executed (38.9%): 17 Pass, 2 Fail*, 2 Blocked, 33 Not Run
+Modules:     Auth, Dashboard, PIM/Employee, Profile, Leave, Time, Recruitment, Reports
+Defects:     0 verified SUT defects (*2 Fails are test-design wording, no bugs filed)
+Env:         Firefox 155.0 primary / Chrome for Testing 153.0 secondary, Ubuntu 24.04, 1920×1080
 ```
 
-## Planned Coverage
+## What Tested (with evidence)
 
-Auth, Dashboard, Employee Management, Profile/forms, Leave (major), Time (if present), Recruitment (if present), Reports (if present). The pinned app is installed; qa_admin + qa_ess logins and role nav verified 2026-10-03. Functional execution (TEST-CYCLE-01) not yet started.
+- **Auth/session (8 probes):** valid admin + ESS logins with role-correct nav (12 vs 8 items), invalid/unknown/empty/whitespace rejection ("Invalid credentials" generic — no enumeration; "Required" inline), logout, back-button + direct-URL guard. `evidence/smoke/TC-AUTH-*.png`.
+- **Dashboard/nav:** widget load, PIM/Leave/Time/Recruitment routing, post-logout redirect.
+- **Employee (specified-data conforming rerun):** E2001 (Aarav Sharma, DOB 1990-01-15) created → found by ID → DOB persists; empty/duplicate blocked with still exactly 1 record; 'Aarav' → exactly E2001 (Reset → 6 rows); 'ZzzNoMatch' → "No Records Found"; true name limit 30 (30 saved, 31 rejected).
+- **Time:** ESS punch-in → visible timestamped record → punch-out, all confirmed.
+- **Regression (same build):** 9/11 Pass, 2 Blocked. Retest: N/A (no fixes supplied).
 
-## Testing Techniques
+## Techniques
 
-Functional, Smoke, Sanity, Regression REG-001..011, Exploratory charters EXP-xxx, EP, BVA Min±1/Max±1, Decision tables, State-transition (Pending→Approved/Rejected + invalid), UI, Basic accessibility, Cross-browser.
+Functional, smoke-first, regression subset REG-001–011, exploratory charters (EXP-PIM-01/EXP-SEARCH-01/EXP-AUTH-01), EP, BVA (30/31 boundary proven), decision tables, state transitions (punch cycle, session guard), UI consistency, basic manual accessibility (planned), cross-browser smoke.
 
-## Traceability and execution status
+## Coverage
 
-See the planned [RTM](docs/05-traceability/rtm.md) and [execution summary](docs/06-execution/test-summary.md). No defect is presented as verified; defect reporting and execution metrics will be added only after testing.
+20 derived requirements × 54 cases, 100% planned traceability (script-verified, no orphans); executed coverage concentrates on Auth, Dashboard, PIM, and Time. Leave submit chain is Blocked on entitlement provisioning; Profile/Recruitment/Reports/UI/compat await functional days. Matrix: [RTM](docs/05-traceability/rtm.xlsx).
+
+## Defect Summary
+
+**Zero verified defects** — reported as zero. Two test-design flags (TC-AUTH-002, TC-PIM-003) and one voided probe error are documented with evidence rather than filed. See [bugs/](bugs/) and [findings](exploratory/findings.md).
+
+## Featured verification (no bug to feature — showing the chain instead)
+
+**E2001 end-to-end:** requirement REQ-PIM-001 → cases TC-PIM-001/007 → executed Pass → evidence `TC-PIM-001-E2001-saved.png`, `TC-PIM-001-E2001-in-list.png`, `TC-PIM-007-E2001-detail.png` → regression REG-004/005/006 green on the same build → no defect. This requirement→case→execution→evidence→regression chain is the portfolio's core exhibit.
+
+## Evidence
+
+36 per-TC screenshots in `evidence/smoke/` + `evidence/regression/`, each named for its case (never `Screenshot1.png`) and answering "What am I looking at?". Start here: `evidence/smoke/TC-PIM-004-Aarav-search.png`, `evidence/smoke/TC-PIM-002-E2001-duplicate.png`, `evidence/regression/REG-010-my-records.png`.
 
 ## Deliverables
 
-- Test Plan, DRS, 54 cases (`docs/04-test-cases/test-cases.xlsx`), RTM (`docs/05-traceability/rtm.xlsx`), Execution (`docs/06-execution/execution-results.xlsx`), Bugs+evidence, Final Report.
+- [Project charter](docs/01-project-overview/project-charter.md) · [Environment (reproducible)](docs/01-project-overview/environment.md) · [Inventory](docs/01-project-overview/application-inventory.md)
+- [Derived requirements](docs/02-requirements/derived-requirements.md) · [Test plan](docs/03-test-plan/test-plan.md) · [Cases](docs/04-test-cases/test-cases.xlsx) · [RTM](docs/05-traceability/rtm.xlsx)
+- [Execution log](docs/06-execution/execution-results.xlsx) · [Summary](docs/06-execution/test-summary.md) · [Regression](docs/06-execution/regression-results.xlsx) · [Retest](docs/06-execution/retest-results.xlsx)
+- [Final QA report](docs/07-final-report/final-qa-report.md) · [Exploratory sessions](exploratory/session-notes.md) · [Synthetic test data](test-data/)
 
 ## Tools
 
-Firefox DevTools/Network/Responsive/Console/Storage, Chromium, Markdown, LibreOffice Calc/Sheets, Flameshot/GNOME/Firefox shots, OBS Studio, git/GitHub.
+Firefox DevTools (Network/Responsive/Console/Storage), Chromium secondary, Playwright (evidence capture only — no UI automation claimed), Markdown, LibreOffice Calc, git/GitHub. All test data synthetic; credentials local-only in gitignored `.env`.
 
 ## Limitations
 
-Perf/load, pen-test, source/DB mods, automation, prod deploy, payments, integrations, mobile, premium unavailable out of scope.
+Leave submit/approve chain unverified (entitlement setup pending); 33 cases Not Run; single localhost build; email/load/server-side inspection unavailable. Security penetration testing was outside the project scope — only UI-observable session/authorization boundaries were noted.
 
 ## Disclaimer
 
