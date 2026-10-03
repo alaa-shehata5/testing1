@@ -1,7 +1,7 @@
 # Final QA Report — OrangeHRM Manual QA (TEST-CYCLE-01, partial)
 
 > Report status: **Issued 2026-10-03 as a partial-cycle report.** 21 of 54
-> planned cases executed (38.9%) with evidence; 33 remain Not Run and 2 are
+> planned cases have an execution disposition (38.9%); 33 remain Not Run and 2 are
 > Blocked on leave-entitlement preconditions. Zero SUT defects were verified —
 > reported as zero, never filled to a quota. No release verdict is given (see
 > §12 decision framework).
@@ -86,14 +86,16 @@ Detail: `docs/06-execution/execution-results.xlsx`,
 
 ## 7. Coverage (REQ→TC)
 
-20 derived requirements, each with ≥1 planned case (100% planned coverage);
-every one of the 54 cases maps back to exactly one requirement (no orphans,
-verified by script). Executed coverage concentrates on REQ-AUTH-001–004,
-REQ-DASH-001, REQ-PIM-001–004, and REQ-TIME-001. Uncovered-as-executed:
-REQ-PROF-001, REQ-LEAVE-002–004 (blocked/pending), REQ-REC-001,
-REQ-REPORT-001, REQ-UI-001, REQ-COMP-001. Matrix:
-`docs/05-traceability/rtm.xlsx` (all rows `Planned` pre-execution baseline;
-execution state lives in the execution workbooks).
+All 20 requirements have at least one planned case (100% planned requirement
+coverage); every one of the 54 cases maps to exactly one requirement. In the
+current execution record, 12/20 requirements (60%) have at least one case
+with a Pass, Fail, or Blocked disposition; 9/20 (45%) have at least one
+passing case. Requirements with no passing case are REQ-AUTH-002 (invalid
+expected role menu), REQ-PROF-001, REQ-LEAVE-001–005, REQ-REC-001,
+REQ-REPORT-001, REQ-UI-001, and REQ-COMP-001. Leave requirements include
+blocked and not-run cases; they are not represented as passed. The current
+`docs/05-traceability/rtm.xlsx` includes per-requirement case mappings and
+execution counts synchronized from `execution-results.xlsx`.
 
 ## 8. Defects
 
@@ -110,9 +112,9 @@ left frozen per process; no BUG was filed for correct application behavior.
 
 ## 9. Major Findings
 
-1. Authentication and session boundaries behave correctly under all 8 probes:
-   generic "Invalid credentials" (no account enumeration), inline "Required"
-   for empty/whitespace, safe rejection of 500-char and script/quote input,
+1. Authentication and session boundaries behaved as recorded in the executed
+   cases: generic "Invalid credentials" (no account enumeration), inline
+   "Required" for empty/whitespace, safe rejection of 500-char and script/quote input,
    logout + back-button + direct-URL guard all redirect to login.
 2. Employee workflows are sound where exercised: autocomplete search returns
    exactly the matching record, ID no-match yields "No Records Found" (no
@@ -125,11 +127,11 @@ left frozen per process; no BUG was filed for correct application behavior.
    seeded and retrieved; 'Aarav' search returns exactly E2001 and Reset
    restores all 6 rows; 'ZzzNoMatch' yields "No Records Found" with no stale
    rows — the name field submits free text as a filter.
-4. The highest-impact open item is leave submission: ESS Apply Leave renders
+5. The highest-impact open item is leave submission: ESS Apply Leave renders
    "No Leave Types with Leave Balance", so the entire submit/cancel/approve/
    reject chain (12 cases) awaits entitlement provisioning — a setup task,
    not a product failure.
-5. Process integrity held: one voided probe error (unlabeled global Search box
+6. Process integrity held: one voided probe error (unlabeled global Search box
    mistaken for the Name field) was caught by control mapping and documented
    in `exploratory/findings.md` F-02 instead of being filed.
 

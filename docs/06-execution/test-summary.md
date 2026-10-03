@@ -93,10 +93,13 @@ TC-TIME-001-ess-timesheet.png.
 - Retest: **N/A — no fix/build was supplied.** Phase 9 verified 0 SUT defects,
   so there is nothing to retest. No fixes were pretended:
   `docs/06-execution/retest-results.xlsx` records the N/A disposition.
-- Regression (same pinned build, fresh evidence in `evidence/regression/`):
+- Regression (same pinned build, evidence linked by file path in
+  `regression-results.xlsx`):
   REG-001/002/003/004/005/006/008/010/011 Pass; REG-007/009 Blocked
   (leave-entitlement precondition still unmet — nothing submittable, nothing
-  cancellable). Detail: `docs/06-execution/regression-results.xlsx`.
+  cancellable). REG-004 links to the E2091 result screenshot; REG-009 links to
+  the no-balance Apply screen and empty Leave List. Detail:
+  `docs/06-execution/regression-results.xlsx`.
 - New results reflected in the totals above: TC-PIM-007 Pass (conforming
   E2001 run; E2091 evidence retained as supporting). TC-TIME-001/002 Pass (ESS punch-in → visible record →
   punch-out, both "Successfully Saved"). Synthetic records only
