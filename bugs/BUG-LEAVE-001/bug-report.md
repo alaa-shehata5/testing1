@@ -1,30 +1,54 @@
-# BUG-LEAVE-001 — [Leave] [observable failure] [condition] (only if reproduced)
+# BUG-LEAVE-001 — TEMPLATE (no defect verified)
 
-## Severity
-High
-## Priority
-P1
+> Status: **Unfilled template.** No defect has been observed, reproduced, or
+> evidenced. Do not cite this file as a found bug. Fill it only from a
+> reproduced TEST-CYCLE-01 failure with screenshots in `evidence/`.
+
+## Title
+
+[Module] [observable failure] [condition] — e.g. Leave — End date earlier than
+start can be submitted without validation *(only if reproduced)*
+
+## Severity / Priority
+
+TBD with justification at filing time. Scale: Critical = unusable/corruption;
+High = major broken, no workaround; Medium = workaround exists; Low =
+cosmetic. Priority P0 immediate / P1 pre-release / P2 planned / P3 backlog.
+
 ## Environment
-- OS: / Browser: / Version: / App: pinned / Viewport: 1920×1080
-## Preconditions
-ESS user with balance in type X.
-## Test Data
-type, dates, duration, comment (synthetic).
-## Steps to Reproduce
-1. Login ESS 2. Leave → Apply 3. Enter data 4. Apply
-## Expected Result
-Validation blocks invalid range with message.
-## Actual Result
-(observable only)
-## Reproducibility
-5/5
-## Impact
-HR cannot tell why request failed / record lost (justify, no fabrication).
-## Evidence
-See evidence/BUG-LEAVE-001/ (01-precondition.png, 02-input.png, 03-failure.png, evidence.md)
-## Related Test Case
-TC-LEAVE-008
-## Related Requirement
-REQ-LEAVE-003
 
-Severity: Critical unusable/corruption/major unavailable; High major broken/no workaround; Medium workaround/partial; Low cosmetic. Priority P0 immediate P1 pre-release P2 planned P3 backlog.
+- OS: TBD / Browser: TBD / Build: OrangeHRM 5.8.1
+  (`orangehrm/orangehrm:5.8.1@sha256:5eb278ac…`) / Viewport: 1920×1080
+
+## Preconditions / Test Data
+
+TBD — ESS user with balance; synthetic rows only.
+
+## Steps to Reproduce
+
+TBD — numbered, starting from login.
+
+## Expected Result
+
+TBD — must be defensible from the DRS, not rewritten after observation.
+
+## Actual Result
+
+TBD — observable behavior only.
+
+## Reproducibility
+
+TBD — e.g. all attempts with dates, or N of M with dates.
+
+## Impact
+
+TBD — justified user/workflow impact, no fabrication.
+
+## Evidence
+
+`bugs/BUG-LEAVE-001/evidence/` — `01-precondition.png`, `02-input.png`,
+`03-failure.png`, `evidence.md` (each shot answers "What am I looking at?").
+
+## Related Test Case / Requirement
+
+TBD — candidate: TC-LEAVE-005 / REQ-LEAVE-003 (link only after a real failure).
