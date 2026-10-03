@@ -19,3 +19,4 @@
 - Phase 11: partial-cycle final QA report issued (38.9% execution, no release verdict, What-I-could-not-verify)
 - Phase 12: README sales front door with real numbers and embedded evidence; bugs/ zero-defect statement + filing template guide; evidence PNGs and execution workbooks whitelisted in .gitignore
 - Phase 13: case study, three-minute demo script, and eight portfolio slides; corrected requirement/test mappings and screenshot counts; annotated E2001 evidence slide
+- Phase 14: QC verdict corrected for intentional evidence/workbook binaries; added rerunnable workbook/link/evidence validator; clarified partial-cycle portfolio approval and release-verdict boundary

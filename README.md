@@ -55,7 +55,7 @@ More examples: `evidence/smoke/TC-PIM-002-E2001-duplicate.png` and `evidence/reg
 - [Project charter](docs/01-project-overview/project-charter.md) · [Environment (reproducible)](docs/01-project-overview/environment.md) · [Inventory](docs/01-project-overview/application-inventory.md)
 - [Derived requirements](docs/02-requirements/derived-requirements.md) · [Test plan](docs/03-test-plan/test-plan.md) · [Cases](docs/04-test-cases/test-cases.xlsx) · [RTM](docs/05-traceability/rtm.xlsx)
 - [Execution log](docs/06-execution/execution-results.xlsx) · [Summary](docs/06-execution/test-summary.md) · [Regression](docs/06-execution/regression-results.xlsx) · [Retest](docs/06-execution/retest-results.xlsx)
-- [Final QA report](docs/07-final-report/final-qa-report.md) · [Exploratory sessions](exploratory/session-notes.md) · [Synthetic test data](test-data/)
+- [Final QA report](docs/07-final-report/final-qa-report.md) · [Phase 14 QC gate](docs/07-final-report/qc-gate.md) · [Repeatable QC validator](scripts/validate_qc.py) · [Exploratory sessions](exploratory/session-notes.md) · [Synthetic test data](test-data/)
 
 ## Tools
 

@@ -1,16 +1,27 @@
-# QC Gate verdict — 2026-10-03 (blocking gate, Phase 14)
+# QC Gate verdict — 2026-10-03 (Phase 14)
 
-> Method: scripted checks against the repo, not eyeballing. Any FAIL below
-> blocks publication until fixed.
+> **Decision: APPROVED for portfolio publication as a partial-cycle engagement.**
+> This is not a product release approval. The gate remains blocking for
+> inaccurate claims, broken traceability, or unreviewed artifacts; the
+> incomplete execution and zero-defect outcome are disclosed limitations, not
+> criteria silently marked complete.
+>
+> Re-run the repository checks from the root with
+> `python3 -m pip install -r scripts/requirements-qc.txt && python3 scripts/validate_qc.py`.
+> The validator checks workbook mappings and status counts, evidence paths,
+> expected artifact inventory, ethics disclaimers, and every local Markdown
+> link in tracked Markdown files. Human review is still required for screenshot
+> meaning/privacy, expected-result defensibility, and the ethics of findings.
 
 ## Requirements — PASS
 
-- 20 unique IDs, stable `REQ-xxx-NNN` format; every REQ maps to ≥1 TC.
-- ASM-xxx live only in `assumptions.md` (4 items); zero ASM rows in the DRS table.
+- 20 unique IDs; every requirement maps to at least one case. Assumptions are
+  kept separately in `assumptions.md` (4 ASM IDs).
 
 ## Cases — PASS
 
-- 54 unique TC IDs; Expected/Steps/Test Data non-empty for all 54.
+- 54 unique TC IDs; Requirement, Expected Result, Steps, and Test Data are
+  populated for every case.
 - Type mix matches plan: Positive 20, Negative 14, Boundary 6, State 5,
   UI 4, Compatibility 3, Accessibility 2 (= 54). No duplicate IDs.
 
@@ -24,7 +35,8 @@
 ## RTM — PASS
 
 - Every RTM reference resolves to an existing TC; every TC has an execution
-  state. No broken IDs. Case↔execution workbooks carry identical statuses.
+  state and appears exactly once in the RTM. Requirement mappings and per-REQ
+  status totals reconcile with the case and execution workbooks.
 
 ## Metrics — PASS
 
@@ -33,28 +45,40 @@
 - Counts identical in execution log, case workbook, summary, final report, and
   dashboard SVG. Defect total (0) matches `bugs/`.
 
-## Repo/readme — PASS
+## Repository, evidence, and README — PASS
 
-- 87 tracked files; no binaries, no secrets (only documented disposable
-  localhost DB throwaways in environment.md; real QA passwords stay in
-  untracked `.env`). 8 test-data files present. 21/21 sampled doc links resolve.
+- Inventory: 43 evidence PNGs and 5 QA XLSX workbooks. These are intentional
+  portfolio deliverables explicitly required
+  by the plan; all PNGs are under `evidence/` and all workbooks under `docs/`.
+  No other binary artifact types are allowed by this gate.
+- Eight tracked test-data files. `.env` is ignored and untracked; the
+  reproducibility instructions identify their localhost database passwords
+  as disposable throwaways. This is not represented as an automated secrets
+  scan.
+- The validator checks every local Markdown link in tracked Markdown (not a
+  sample), plus every regression evidence path. README links, embedded images,
+  and the demo assets resolve.
 
 ## Ethics — PASS (after fix)
 
 - Mandatory disclaimer now on README, final report, and case study. No client
-  or employment claims anywhere. Penetration testing explicitly out of scope.
+  or employment claims in the reviewed portfolio materials. Penetration
+  testing explicitly out of scope.
 
-## Acceptance — CONDITIONAL PASS
+## Acceptance — PARTIAL-CYCLE WAIVERS
 
-- Met: exact pinned build, reproducible env, frozen scope, 54 documented and
-  traced cases, executed actuals, correct metrics, final report, organized
-  repo, README, 8 images, demo script, disclaimer.
-- Waived by honesty (not by lowering the bar): "genuine reproducible defects"
-  and the defect-chain differentiators (FAIL→BUG→retest, Featured Defect) —
-  zero were found in 21 executed cases, and none were invented to fill the
-  slots. The report states this and withholds a release verdict.
-- Carried forward, not hidden: 33 Not Run cases and the leave-entitlement
-  setup are the explicit entry tasks for the next cycle.
+- Satisfied for this portfolio: pinned build and reproducible environment,
+  frozen scope, 54 documented/traced cases, execution evidence, reconciled
+  metrics, final report, README, eight portfolio images, demo script, and
+  disclaimer.
+- Not satisfied and explicitly waived only for this partial-cycle portfolio:
+  a genuine reproducible defect and the FAIL→BUG→retest/Featured Defect
+  differentiators. No defect was verified in the 21 cases with dispositions;
+  none was fabricated. This waiver is not a claim that the 54-case suite is
+  complete or that the product passed release criteria.
+- Carried forward: 33 Not Run cases and the leave-entitlement setup remain
+  entry tasks for the next execution cycle.
 
-**Gate: OPEN for portfolio use as a partial-cycle engagement. Re-run this
-gate after the next execution cycle.**
+**Gate: APPROVED for portfolio publication, with the partial-cycle limitations
+and waivers above. No product release verdict is given. Re-run the gate after
+the next execution cycle; it does not expire this portfolio approval.**
