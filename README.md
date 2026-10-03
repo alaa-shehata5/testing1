@@ -10,20 +10,20 @@
 Application: OrangeHRM Starter / Open Source (pinned self-hosted build)
 Testing Type: Manual QA (functional, smoke, sanity, regression, exploratory, BVA/EP, state, UI, basic a11y, compat)
 Test Cases: 54 planned (Auth 8, Dashboard 4, PIM 10, Profile 6, Leave 12, Time 5, Recruitment 4, Reports 3, UI 2)
-Modules: 6+ | Defects: XX verified (fill actual) | Environment: Firefox / Chromium / Linux 1920×1080
+Modules: pending pinned-build confirmation | Defects: not yet reported | Environment: Firefox / Chromium / Linux 1920×1080
 ```
 
-## What I Tested
+## Planned Coverage
 
-Auth, Dashboard, Employee Management, Profile/forms, Leave (major), Time (if present), Recruitment (if present), Reports (if present).
+Auth, Dashboard, Employee Management, Profile/forms, Leave (major), Time (if present), Recruitment (if present), Reports (if present). Execution is pending completion of the OrangeHRM installer, user provisioning, and module verification.
 
 ## Testing Techniques
 
 Functional, Smoke, Sanity, Regression REG-001..011, Exploratory charters EXP-xxx, EP, BVA Min±1/Max±1, Decision tables, State-transition (Pending→Approved/Rejected + invalid), UI, Basic accessibility, Cross-browser.
 
-## Coverage / Defect Summary / Featured Bug
+## Traceability and execution status
 
-See [RTM](docs/05-traceability/rtm.md), [Execution](docs/06-execution/test-summary.md), [BUG-LEAVE-001](bugs/BUG-LEAVE-001/bug-report.md). Featured defect chain: REQ-LEAVE-003 → TC-LEAVE-008 → FAIL → BUG-LEAVE-001 + evidence.
+See the planned [RTM](docs/05-traceability/rtm.md) and [execution summary](docs/06-execution/test-summary.md). No defect is presented as verified; defect reporting and execution metrics will be added only after testing.
 
 ## Deliverables
 
@@ -39,4 +39,4 @@ Perf/load, pen-test, source/DB mods, automation, prod deploy, payments, integrat
 
 ## Disclaimer
 
-This is a self-initiated QA portfolio project performed against an open-source application. It does not represent commissioned client work or employment by the application owner.
+This is an independently executed portfolio QA engagement against an open-source application. It was not commissioned by OrangeHRM. It does not represent client work or employment by the application owner.

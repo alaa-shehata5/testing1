@@ -8,8 +8,8 @@
 |---|---|
 | Application | OrangeHRM Starter / Open Source (self-hosted, pinned) |
 | Pinned version (final execution) | **5.8.1** — `OHRM_VERSION 5.8.1` in `orangehrm/orangehrm:main` Dockerfile (`FROM php:8.3-apache-bookworm`), ZIP `stable/5.8.1`, MD5 `173cbdffe595246d7e54ec2f2330857d` |
-| Self-hosted URL | TBD in Phase 2 (Docker deploy pending; record `http://<host>:<port>` + image digest here) |
-| Build/commit pin | TBD in Phase 2 — record `git rev-parse HEAD` of `orangehrm/orangehrm` and/or Docker image digest (`docker images --digests`). Dockerfile `latest` digest prefix observed via Hub metadata `sha256:d692780ef…` is **not** a full pin — replace with full digest on pull |
+| Self-hosted URL | `http://localhost:8080/` (currently redirects to the fresh-install wizard; see `environment.md`) |
+| Build/commit pin | Docker image `orangehrm/orangehrm:5.8.1`, digest `sha256:5eb278acc6280c9a3144b2868230abe48b5bc5892fe00d07c7ec3028e86638e7`; source tag `v5.8.1`, commit `d3a50a8` (see `environment.md`) |
 | Recon source (not SUT) | `https://opensource-demo.orangehrmlive.com` and `https://opensource-demo.orangehrmlive.com/web/index.php/auth/login` |
 | Demo version observed 2026-10-03 | Root page footer: **OrangeHRM OS 5.8**; deep login path footer: **OrangeHRM OS 5.9**. Demo is drifting — confirms demo cannot serve as reproducible SUT |
 | License | GPL-3.0 (`orangehrm/orangehrm` repo) |
@@ -28,21 +28,21 @@ No test users created yet — Phase 2.
 
 ## 3. Modules
 
-Starter-documented module set (marketing + Starter Help + API `GET /api/v2/admin/modules`). Mark `Pinned-build present?` as TBD until Phase 2 interactive check.
+Starter-documented module set (marketing + Starter Help + API `GET /api/v2/admin/modules`). Presence in the pinned build is not verified until the installer is complete and each module is checked.
 
-| Module | Documented capability | Pinned-build present? |
+| Module | Documented capability | Pinned-build status |
 |---|---|---|
-| Dashboard | Landing, widgets, nav | TBD Phase 2 |
-| Admin / HR Administration | Users, roles, org structure, config | TBD Phase 2 |
-| PIM / Employee Management | Employee DB, add/filter/list, corporate directory | TBD Phase 2 |
-| Leave / PTO | Apply, assign, leave list, entitlements, balance check, approve/reject, calendar | TBD Phase 2 |
-| Time | Timesheets, approve/reject, time reports, clock in/out | TBD Phase 2 |
-| Recruitment (ATS) | Vacancies, candidates, hiring process | TBD Phase 2 |
-| Performance | 180° reviews, trackers (Starter-limited) | TBD Phase 2 |
-| Reporting & Analytics | Leave/time/PIM reports, custom/dynamic reports | TBD Phase 2 |
-| Directory | Corporate directory | TBD Phase 2 |
-| Maintenance | GDPR/maintenance | TBD Phase 2 |
-| Claim (+ `mobile`) | API module flags (`claim`, `mobile`) — Starter coverage unclear | TBD Phase 2 |
+| Dashboard | Landing, widgets, nav | Not verified; installer incomplete |
+| Admin / HR Administration | Users, roles, org structure, config | Not verified; installer incomplete |
+| PIM / Employee Management | Employee DB, add/filter/list, corporate directory | Not verified; installer incomplete |
+| Leave / PTO | Apply, assign, leave list, entitlements, balance check, approve/reject, calendar | Not verified; installer incomplete |
+| Time | Timesheets, approve/reject, time reports, clock in/out | Not verified; installer incomplete |
+| Recruitment (ATS) | Vacancies, candidates, hiring process | Not verified; installer incomplete |
+| Performance | 180° reviews, trackers (Starter-limited) | Not verified; installer incomplete |
+| Reporting & Analytics | Leave/time/PIM reports, custom/dynamic reports | Not verified; installer incomplete |
+| Directory | Corporate directory | Not verified; installer incomplete |
+| Maintenance | GDPR/maintenance | Not verified; installer incomplete |
+| Claim (+ `mobile`) | API module flags (`claim`, `mobile`) — Starter coverage unclear | Not verified; installer incomplete |
 
 API module enum for reference: `admin, pim, leave, time, recruitment, performance, maintenance, mobile, directory, claim`.
 
@@ -53,7 +53,7 @@ Login → Dashboard → Employee add/filter/list → Leave apply (Full/Half/Spec
 ## 5. Unavailable / out-of-recon items (explicit)
 
 - Interactive demo walkthrough: **not performed** — demo is JS-rendered (`"doesn't work properly without JavaScript enabled"` via static fetch), no browser in this container to drive it yet.
-- Pinned 5.8.1 behavior: **unverified** — no self-hosted instance deployed yet.
+- Pinned 5.8.1 behavior: **unverified** — image is running, but the web installer is incomplete.
 - Advanced-only premium (full Performance/Compensation/Surveys/Onboarding/Request Desk/advanced Roster), native mobile apps, payments, third-party connectors, prod deployment: **out of scope** per charter.
 - Email delivery, LDAP/social auth, cloud trial provisioning: **not available in recon**; treat as limitation unless Phase 2 enables them.
 
@@ -62,23 +62,23 @@ Login → Dashboard → Employee add/filter/list → Leave apply (Full/Half/Spec
 | Field | Value |
 |---|---|
 | OS | Ubuntu 24.04.5 LTS (noble), from `/etc/os-release` |
-| Browser | **None installed** — `firefox`, `chromium`, `google-chrome` all not found. Phase 2 must install Firefox (primary) + Chromium (secondary) and record versions |
-| Viewport target | 1920×1080 (not yet verified — no browser) |
-| Docker | 29.8.0 available, **zero images pulled** |
+| Browser at recon time | No browsers were installed during the initial recon; Firefox 155.0 and Chrome for Testing 153.0.8010.12 were installed afterward (see `environment.md`) |
+| Viewport target | 1920×1080; both browsers later reached the installer, not the configured application |
+| Docker at recon time | Docker 29.8.0 available; no images had yet been pulled |
 | Python | 3.14.2 (recon tooling only) |
 | Disk | 18G avail on /workspaces |
 
 ## 7. Env limitations carried into Phase 2
 
-1. Must `docker pull orangehrm/orangehrm` pinned digest + deploy with MySQL/MariaDB, then record URL + commit + digest here.
-2. Must install browsers and re-check demo-vs-pinned parity for the 7 core modules above.
+1. Complete the installer, provision test users, and record hands-on module presence/absence with evidence.
+2. Re-check demo-vs-pinned behavior for the selected core modules after installation.
 3. Static fetch cannot substitute for interactive recon — Phase 2 smoke must be hands-on (or Playwright-driven with screenshots) before scope freeze.
 
 ## 8. Verify (Phase 1 gate)
 
 - [x] Exact SUT stated (5.8.1 pinned self-hosted) with recon source separated and dated
 - [x] Unavailable items explicit (§5) — a stranger can tell what was *not* seen
-- [ ] Phase 2 must flip every `TBD Phase 2` above to Present/Absent with build evidence
+- [ ] Phase 2 must verify each module as Present/Absent in the installed pinned build, with evidence
 
 ## Sources
 

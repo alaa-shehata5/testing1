@@ -4,7 +4,16 @@
 
 Independent manual QA of OrangeHRM pinned build: validate employee + leave workflows, verify OBS/DER requirements, cover positive/negative/boundary/state/UI/a11y/compat, produce traceable evidence + final report.
 
-## Scope (frozen 2026-10-03 — changes require changelog entry)
+## Scope baseline (2026-10-03)
+
+This baseline freezes the core areas Auth, Dashboard, PIM, Profile, and Leave.
+Time, Recruitment, and Reports are conditional: they enter execution scope only
+if present and usable in the pinned 5.8.1 build. Phase 1/2 discovery is still
+incomplete, so this is **not yet the final execution-scope freeze**. Before
+case execution, record each conditional module as present or absent in
+`docs/01-project-overview/application-inventory.md`, then update this section
+and the case/RTM workbooks together. Any post-freeze scope change requires a
+`CHANGELOG.md` entry.
 
 ### In scope
 
@@ -24,8 +33,10 @@ fields, transitions, applicant info, delete/edit.
 H. Reports (**where available**): generation, filters, ranges, empty results,
 consistency, export.
 
-Conditional modules (F/G/H): if absent from the pinned build, their cases are
-redistributed to A–E per the Phase 6 distribution rule — never fabricated.
+Conditional modules (F/G/H): do not execute their cases unless the module is
+confirmed present. If absent, document the exclusion and revise the planned
+case allocation and RTM before execution; do not silently redistribute or
+fabricate functionality.
 
 ### Out of scope
 
@@ -42,8 +53,8 @@ synthetic employees/users only (see `test-data/`). Full list:
 
 ### Limitations
 
-Web installer not yet completed at freeze time (env §5) — module presence
-unconfirmed; email delivery, load, server-side security, payments,
+Web installer is not yet completed — module presence is unconfirmed; email
+delivery, load, server-side security, payments,
 integrations, mobile, and premium features unavailable in this setup.
 Security note: penetration testing is out of scope; only UI-observable
 session/authorization boundaries are noted.
@@ -137,7 +148,7 @@ only).
 | Employee Data | High | High | High | 10 PIM + 6 Profile cases; data-integrity findings outrank cosmetics |
 | Leave | High | High | High | 12 cases incl. decision table + state; workflow breaks are P1 minimum |
 | Dashboard | Medium | Medium | Medium | 4 smoke-weighted cases |
-| Time / Recruitment / Reports | Medium | Medium | Medium | Covered only if present; otherwise redistributed |
+| Time / Recruitment / Reports | Medium | Medium | Medium | Execute only if present; otherwise exclude after a documented scope decision |
 | UI / Accessibility / Compat | Low | Medium | Low | 2 cases + cross-browser pass; Low severity unless blocking |
 
 Priority follows risk, not "tested equally". If time is cut, Low-risk UI cases
@@ -152,14 +163,14 @@ against the Phase 14 gate.
 
 ## Environment
 
-Ubuntu 24.04.5 LTS, Chrome for Testing 153.0.8010.12 (primary, Playwright),
-Firefox 155.0 (secondary), OrangeHRM 5.8.1 pinned
+Ubuntu 24.04.5 LTS, Firefox 155.0 (primary, Playwright),
+Chrome for Testing 153.0.8010.12 (secondary), OrangeHRM 5.8.1 pinned
 (`orangehrm/orangehrm:5.8.1@sha256:5eb278ac…`), 1920×1080, 2026-10-03.
 Full record: `docs/01-project-overview/environment.md`.
 
 ## Entry/Exit
 
-Entry: build deployed, inventory frozen, test users/data ready. Exit: 54 executed (or redistributed if module missing), defects reproduced + evidenced, metrics + report done, QC gate passed.
+Entry: installer complete; pinned build and modules recorded; final execution scope and case allocation frozen; test users/data ready. Exit: all in-scope cases executed or explicitly blocked/N/A with reasons, defects reproduced + evidenced, metrics + report done, QC gate passed. Conditional-module absences are excluded with a recorded scope decision, not silently redistributed.
 
 ## Deliverables
 

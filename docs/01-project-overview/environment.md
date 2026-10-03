@@ -7,12 +7,12 @@ Date: 2026-10-03. All values below were observed on this machine unless marked T
 | Field | Value |
 |---|---|
 | OS | Ubuntu 24.04.5 LTS (noble), `/etc/os-release` |
-| Primary browser | **Google Chrome for Testing 153.0.8010.12** (Playwright `chromium-1243`, `chrome-linux64/chrome --version`) |
-| Secondary browser | **Mozilla Firefox 155.0** (Playwright `firefox-1543`, `firefox --version`) |
+| Primary browser | **Mozilla Firefox 155.0** (Playwright `firefox-1543`, `firefox --version`) |
+| Secondary browser | **Chrome for Testing 153.0.8010.12** (Playwright `chromium-1243`, `chrome-linux64/chrome --version`) |
 | Browser source | `npx -y playwright@latest install chromium firefox --with-deps` (v1.63.0); no system Firefox/Chromium installed (apt offers snap stubs only, snap unavailable) |
-| Viewport | 1920×1080 — verified: both browsers loaded SUT at this viewport, HTTP 200, title `OrangeHRM` |
+| Viewport | 1920×1080 — both browsers reached the fresh-install wizard at this viewport (HTTP 200, title `OrangeHRM`); the installed application has not yet been verified |
 | Docker | 29.8.0 |
-| Date | 2026-10-03 12:5x UTC |
+| Date | 2026-10-03; container/installer state rechecked at 13:05 UTC |
 
 ## 2. SUT containers (pinned — matches charter §1)
 
@@ -22,7 +22,7 @@ Date: 2026-10-03. All values below were observed on this machine unless marked T
 | App env inside image | `OHRM_VERSION=5.8.1`, `OHRM_MD5=173cbdffe595246d7e54ec2f2330857d` (matches charter) |
 | DB image | `mariadb:10.11` (`10.11.19-MariaDB-ubu2204`), ready for connections |
 | SUT URL | `http://localhost:8080/` → redirects to `/installer/index.php/welcome` (fresh-install wizard) |
-| Installer proof | `curl` shows footer `OrangeHRM OS 5.8.1`; both browsers HTTP 200 title `OrangeHRM` at 1920×1080 |
+| Installer proof | `curl` shows footer `OrangeHRM OS 5.8.1`; both browsers reached the installer (HTTP 200, title `OrangeHRM`) at 1920×1080 |
 | Git tag (source pin) | `orangehrm/orangehrm` tag `v5.8.1`, commit `d3a50a8` (PR #1934, 2026-04-06) |
 | Drift warning | `orangehrm/orangehrm:latest` (= `5.9`, digest `sha256:d692780e…`, `OHRM_VERSION=5.9`) is **not** the SUT — always use the `:5.8.1` tag + digest above |
 
@@ -49,25 +49,25 @@ create the users in `test-data/users.md`.
 | File | Rows | Purpose |
 |---|---|---|
 | `test-data/valid_employee.csv` | 3 | Happy-path PIM creation |
-| `test-data/boundary_employee.csv` | 4 | Name min/max, age 18y/100y on 2026-10-03 |
+| `test-data/boundary_employee.csv` | 4 | Name min/max length, age 18y/100y on 2026-10-03 |
 | `test-data/invalid_employee.csv` | 4 | Empty, numeric names, duplicate ID `E2001`, future DOB |
 | `test-data/leave_boundary_dates.csv` | 8 | Past/today/future, half-day, End<Start, long range, weekend |
 | `test-data/search_test_data.csv` | 6 | Exact/case/partial/space/no-result/id queries |
 | `test-data/users.md` | 3 users | Admin / ESS / Supervisor provisioning (passwords via env) |
-| `test-data/employees.csv` | 2 | Legacy seed (kept) |
+| `test-data/employees.csv` | 2 | Legacy seed with IDs unique from `valid_employee.csv` |
 | `test-data/leave-data.csv` | 2 | Legacy seed (kept) |
 
 ## 5. Outstanding (blocks execution entry gate)
 
 - [ ] Web installer not yet completed — instance creation + admin user pending.
 - [ ] No test users provisioned yet (needs installed instance).
-- [ ] Module presence (`TBD Phase 2` in application-inventory.md) flips to Present/Absent only after install.
+- [ ] Module presence in `application-inventory.md` is marked Present/Absent only after install.
 - [ ] Containers currently running (`orangehrm-581`, `orangehrm-db`); stop with `docker stop` / remove with `docker rm` — data is disposable, test data re-seeds from CSVs.
 
 ## Verify (Phase 2 gate)
 
 - [x] Official source only (Docker Hub `orangehrm/*`, GitHub tag `v5.8.1`) — no third-party copy
 - [x] OS / browsers / app / viewport / date recorded with versions
-- [x] Browsers verified against live SUT (200 + title, both engines, 1920×1080)
+- [x] Both browsers reach the fresh-install wizard (200 + title, both engines, 1920×1080); installed-app behavior remains unverified
 - [x] All 8 required test-data files present
 - [ ] Another person can reproduce env — commands in §3; installer completion still required before TEST-CYCLE-01

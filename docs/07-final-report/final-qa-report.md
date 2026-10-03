@@ -1,14 +1,23 @@
 # Final QA Report — OrangeHRM Manual QA
 
-1. Executive Summary (1 page: tested/covered/found/risky)
-2. Application Under Test (app/version/URL/deploy/build/purpose)
-3. Scope (in/out/assumptions/limitations)
-4. Environment table
-5. Strategy (11 types)
-6. Execution chart/table (actual numbers)
-7. Coverage REQ→TC
-8. Defects Module|Crit|High|Med|Low + taxonomy Functional/Validation/UI/Usability/Navigation/State/Data/Compat
-9. Major Findings ("highest-impact issue affected leave-submission under [condition]")
-10. Risks: Confirmed vs Limitations vs Untested (separate)
-11. Recommendations (evidence-based, e.g. block invalid date ranges pre-submit)
-+ What I could not verify (payments/email/load/server security) + Next QA actions. No fake release verdict. Disclaimer included.
+> Report status: **Not yet issued.** Execution has not started because the self-hosted OrangeHRM installer is incomplete. No execution results, defects, metrics, or release recommendation are reported here.
+
+## Planned report contents
+
+1. Executive summary: tested scope, coverage, findings, and risks.
+2. Application under test: app/version/URL/deployment/build/purpose.
+3. Scope: in scope, out of scope, assumptions, and limitations.
+4. Environment.
+5. Test strategy and techniques actually used.
+6. Execution results using measured counts only.
+7. Requirement-to-test coverage.
+8. Defects by module/severity and taxonomy, if any are verified.
+9. Major findings supported by evidence.
+10. Confirmed risks, limitations, and untested areas.
+11. Evidence-based recommendations and next QA actions.
+
+## Disclaimer
+
+This is an independently executed portfolio QA engagement against an open-source application. It was not commissioned by OrangeHRM. It does not represent client work or employment by the application owner.
+
+Security penetration testing was outside the project scope. Basic security-related functional observations such as session behavior and authorization boundaries were considered where observable through the UI.

@@ -1,7 +1,18 @@
 # RTM — Requirement → Test → Execution → Defect
 
-Columns: Requirement | Description | Test Cases | Execution | Defect | Coverage.
+`rtm.xlsx` is the complete requirement-to-case matrix; it contains one row per
+DRS requirement with the mapped case IDs, current execution state, defect
+link (blank unless raised), and coverage state.
 
-Example: REQ-AUTH-001 Valid login TC-AUTH-001,002 Pass — Covered; REQ-LEAVE-001 Submit TC-LEAVE-001–004 Fail BUG-LEAVE-001 Covered.
+Before execution, the matrix records planned coverage only. The workbook
+currently has 54 planned cases, all `Not Run`; no row should imply a pass or
+verified defect before evidence is recorded. Time, Recruitment, and Reports
+rows/cases are conditional on confirming those modules in the pinned build.
+If a conditional module is absent, update the scope, cases, and RTM together.
 
-Metrics: Coverage = REQ with ≥1TC / Total ×100; Execution = Executed/Total×100; Pass = Passed/Executed×100; Fail; Blocked; Defect coverage [project metric] = TC linked to defects / Failed ×100. Full matrix in rtm.xlsx.
+Metrics after execution: Coverage = requirements with ≥1 planned TC / total
+requirements × 100; Execution = executed / in-scope cases × 100; Pass =
+passed / executed × 100; Fail = failed / executed × 100; Blocked = blocked /
+in-scope cases × 100. Defect coverage (project metric) = failed cases linked
+to defects / failed cases × 100. Report denominators and exclude conditional
+cases only after a documented scope decision.

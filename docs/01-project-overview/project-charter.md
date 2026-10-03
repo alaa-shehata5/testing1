@@ -64,7 +64,7 @@ Understand → Derive requirements → Define scope → Design cases → Execute
 
 ## 6. Scope intent (freeze detail in Phase 3)
 
-Intended in-scope: Auth, Dashboard, Employee Management (PIM), Profile/forms, Leave (major), Time (only if present in 5.8.1 build), Recruitment (only if available), Reports (where available). Out of scope: performance/load, penetration/exploitation, source/DB modification, API/UI automation, prod deployment, payments, third-party integrations, mobile, unavailable premium. Full freeze in `docs/03-test-plan/test-plan.md`.
+Provisional core scope: Auth, Dashboard, Employee Management (PIM), Profile/forms, and Leave (major). Time, Recruitment, and Reports are conditional on presence in the pinned 5.8.1 build. Phase 1/2 discovery is still open; finalize scope in `docs/03-test-plan/test-plan.md` before execution. Out of scope: performance/load, penetration/exploitation, source/DB modification, API/UI automation, prod deployment, payments, third-party integrations, mobile, unavailable premium.
 
 ## 7. Engagement principles (binding)
 
@@ -82,7 +82,7 @@ Intended in-scope: Auth, Dashboard, Employee Management (PIM), Profile/forms, Le
 
 - [x] Exact app/build identified (5.8.1, pinned Docker/source above), environment reproducible intent recorded, scope intent frozen
 - [ ] Recon (Phase 1) confirms modules actually present in 5.8.1 build
-- [ ] Disclaimer present in charter + README + Final Report
+- [x] Required disclaimer present verbatim in charter + README + Final Report
 
 Verify: charter states exact SUT + disclaimer + objectives — yes, sections 1, 5, 8.
 
