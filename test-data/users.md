@@ -6,12 +6,12 @@
 
 | Username | Role | Purpose | Password ref |
 |---|---|---|---|
-| `qa_admin` | Admin | Full-access flows: PIM create/edit, leave entitlements, approve/reject, reports | `SET_VIA_ENV_QA_ADMIN` |
-| `qa_ess` | ESS | Self-service flows: apply/cancel leave, view personal info, timesheets | `SET_VIA_ENV_QA_ESS` |
-| `qa_supervisor` | Supervisor (if present in build) | Approve/reject subordinate leave | `SET_VIA_ENV_QA_SUP` |
+| `qa_admin` | Admin | Full-access flows: PIM create/edit, leave entitlements, approve/reject, reports | Provisioned 2026-10-03 via installer (employee "QA Admin"); login verified, password local-only in `.env` |
+| `qa_ess` | ESS | Self-service flows: apply/cancel leave, view personal info, timesheets | Provisioned 2026-10-03 via Admin → Users → Add, linked to employee "Ess Testuser"; login verified, password local-only in `.env` |
+| `qa_supervisor` | Supervisor | Approve/reject subordinate leave | Not provisioned: Starter has no separate Supervisor login (supervision is an ESS assignment); approval flows use `qa_admin` unless configured during execution |
 
 ## Provisioning notes
 
-- Create after completing the web installer (Phase 2 follow-up): Admin → Admin → User Management → Users → Add.
-- ESS user must be linked to an employee record from `valid_employee.csv`.
-- Record creation date + creator in execution log; never reuse personal data.
+- Created 2026-10-03 by installer (qa_admin) and Admin → User Management → Users → Add (qa_ess).
+- ESS user is linked to an employee record ("Ess Testuser", empNumber 2).
+- Never reuse personal data; all accounts synthetic.

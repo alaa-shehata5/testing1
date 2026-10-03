@@ -15,7 +15,7 @@ Modules: pending pinned-build confirmation | Defects: not yet reported | Environ
 
 ## Planned Coverage
 
-Auth, Dashboard, Employee Management, Profile/forms, Leave (major), Time (if present), Recruitment (if present), Reports (if present). Execution is pending completion of the OrangeHRM installer, user provisioning, and module verification.
+Auth, Dashboard, Employee Management, Profile/forms, Leave (major), Time (if present), Recruitment (if present), Reports (if present). The pinned app is installed; qa_admin + qa_ess logins and role nav verified 2026-10-03. Functional execution (TEST-CYCLE-01) not yet started.
 
 ## Testing Techniques
 

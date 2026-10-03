@@ -53,8 +53,8 @@ synthetic employees/users only (see `test-data/`). Full list:
 
 ### Limitations
 
-Web installer is not yet completed — module presence is unconfirmed; email
-delivery, load, server-side security, payments,
+Installer is complete; qa_admin + qa_ess logins and role nav verified
+2026-10-03 (inventory §2–§4); email delivery, load, server-side security, payments,
 integrations, mobile, and premium features unavailable in this setup.
 Security note: penetration testing is out of scope; only UI-observable
 session/authorization boundaries are noted.
@@ -166,11 +166,13 @@ against the Phase 14 gate.
 Ubuntu 24.04.5 LTS, Firefox 155.0 (primary, Playwright),
 Chrome for Testing 153.0.8010.12 (secondary), OrangeHRM 5.8.1 pinned
 (`orangehrm/orangehrm:5.8.1@sha256:5eb278ac…`), 1920×1080, 2026-10-03.
+The installed login page loads in both browsers; qa_admin + qa_ess
+authenticated sessions verified (inventory §2–§4).
 Full record: `docs/01-project-overview/environment.md`.
 
 ## Entry/Exit
 
-Entry: installer complete; pinned build and modules recorded; final execution scope and case allocation frozen; test users/data ready. Exit: all in-scope cases executed or explicitly blocked/N/A with reasons, defects reproduced + evidenced, metrics + report done, QC gate passed. Conditional-module absences are excluded with a recorded scope decision, not silently redistributed.
+Entry: installer complete; pinned build recorded; authenticated module visibility checked; final execution scope and case allocation frozen; Admin/ESS test users and synthetic data ready. Exit: all in-scope cases executed or explicitly blocked/N/A with reasons, defects reproduced + evidenced, metrics + report done, QC gate passed. Conditional-module absences are excluded with a recorded scope decision, not silently redistributed.
 
 ## Deliverables
 

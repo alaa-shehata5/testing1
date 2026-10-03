@@ -11,3 +11,4 @@
 - Hardening pass: DRS expanded to 20 REQs (past-date probe-only, candidate workflow, REQ-COMP-001), estimate-free README/RTM/report language, corrected boundary data (50-char name, Sunday date, unique seed IDs), Firefox restored as primary browser
 - Phase 5: test plan expanded (6.1-6.11, 11 types, risk table, REG-001..011, decision table, roles); scope honesty rules (no silent redistribution, installer-gated freeze)
 - Phase 6: 54-case suite authored in test-cases.xlsx (module 8/4/10/6/12/5/4/3/2 + type 20/14/6/5/4/2/3, TC-COMP-001, all 20 DRS reqs covered, all Not Run)
+- Entry gates cleared: installer completed (host networking after bridge TCP drop), qa_admin + qa_ess provisioned with verified logins, 12-module nav verified (Reports partial), RTM conditionals resolved

@@ -1,6 +1,6 @@
 # Final QA Report — OrangeHRM Manual QA
 
-> Report status: **Not yet issued.** Execution has not started because the self-hosted OrangeHRM installer is incomplete. No execution results, defects, metrics, or release recommendation are reported here.
+> Report status: **Not yet issued.** The self-hosted OrangeHRM 5.8.1 installation is complete and the login page is reachable, but authenticated test execution has not started. No execution results, defects, metrics, or release recommendation are reported here.
 
 ## Planned report contents
 
