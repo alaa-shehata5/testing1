@@ -44,3 +44,9 @@ requirements (20 REQs, Observed/Derived split) · ✓ 54 cases · ✓ RTM (20×5
 
 Full evidence chain (requirement → case → execution → screenshot → regression)
 is browsable in this repo, starting at the [README](../README.md).
+
+## Disclaimer
+
+This is an independently executed portfolio QA engagement against an
+open-source application. It was not commissioned by OrangeHRM. It does not
+represent client work or employment by the application owner.
