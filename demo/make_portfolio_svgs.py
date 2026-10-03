@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Generate the 8 Phase-13 portfolio images as self-contained SVGs (1200x675)."""
+import base64
 import os
 from xml.sax.saxutils import escape
 
@@ -88,17 +89,28 @@ P["04-rtm"] = svg(head("Traceability — REQ → TC → Result → Defect", "20 
 
 P["05-finding"] = svg(head("Top Finding — honest zero, strongest chain", "No bug invented: the exhibit is verification depth, not a defect") + "\n" +
     card(48, 160, 1104, 130, ["E2001 end-to-end chain (all green)",
-         "REQ-PIM-001 → TC-PIM-001/007 → Pass → 3 screenshots → REG-004/005/006 green on the same build"]) +
+         "REQ-PIM-001 → TC-PIM-001 (Pass); REQ-PIM-003 → TC-PIM-007 (Pass)",
+         "REG-004/006 use E2091; REG-005 uses E2094 (separate regression evidence)"]) +
     card(48, 310, 540, 170, ["Test-design flags (no bugs filed)", "TC-AUTH-002: ESS wording vs correct RBAC", "TC-PIM-003: 50-char guess vs true limit 30"]) +
     card(612, 310, 540, 170, ["Process catch (documented, not filed)", "Voided probe: wrong Search box filled", "Caught by control mapping → F-02"]) + "\n" +
     card(48, 500, 1104, 80, ["Position:  0 verified SUT defects in 21 executed cases — reported as zero, never quota-filled"]) + "\n" + foot(5), 5)
 
-P["06-evidence"] = svg(head("Evidence discipline", "Per-TC naming · 2-second rule · 45 screenshots") + "\n" +
-    card(48, 160, 1104, 110, ["Every shot answers:  “What am I looking at?”",
-         "TC-PIM-004-Aarav-search.png · TC-PIM-002-E2001-duplicate.png · REG-010-my-records.png"]) +
-    card(48, 290, 540, 170, ["Naming (never Screenshot1.png)", "TC-<module>-<nn>-<what>.png", "REG-<nn>-<what>.png"]) +
-    card(612, 290, 540, 170, ["Where it lives", "evidence/smoke/ (36 shots)", "evidence/regression/ (10 shots)"]) + "\n" +
-    card(48, 480, 1104, 100, ["Why it matters:  named evidence is what exposed the voided Search-box probe before it became a false bug"]) + "\n" + foot(6), 6)
+evidence_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                             "evidence", "smoke", "TC-PIM-001-E2001-in-list.png")
+with open(evidence_path, "rb") as image_file:
+    evidence_data = base64.b64encode(image_file.read()).decode("ascii")
+evidence_slide = (
+    '<rect x="0" y="0" width="1200" height="675" fill="#161616"/>'
+    + head("Evidence — E2001 retrieved by ID", "Actual execution screenshot · TC-PIM-001 · Pass")
+    + f'<image x="48" y="155" width="800" height="450" href="data:image/png;base64,{evidence_data}" preserveAspectRatio="none"/>'
+    + '<rect x="346" y="256" width="151" height="22" fill="none" stroke="#FF7B1D" stroke-width="4"/>'
+    + '<rect x="192" y="442" width="642" height="23" fill="none" stroke="#76BC21" stroke-width="4"/>'
+    + card(872, 175, 280, 180, ["Filter", "Employee ID: E2001", "Outcome", "(1) Record Found"])
+    + card(872, 375, 280, 155, ["Matched record", "E2001 · Aarav Sharma", "Source screenshot", "TC-PIM-001-E2001-in-list.png"])
+    + '<text x="48" y="632" font-family="Arial,sans-serif" font-size="17" fill="#B0B0B0">Orange: applied employee-ID filter · Green: single matching result</text>'
+    + foot(6)
+)
+P["06-evidence"] = svg(evidence_slide, 6)
 
 P["07-dashboard"] = svg(head("Dashboard — TEST-CYCLE-01 (partial, 2026-10-03)", "Measured counts only · Blocked ≠ Passed") + "\n" +
     stat(60, 240, "54", "total planned") + stat(300, 240, "21", "executed", ACC) + stat(520, 240, "38.9%", "execution") +
@@ -106,7 +118,7 @@ P["07-dashboard"] = svg(head("Dashboard — TEST-CYCLE-01 (partial, 2026-10-03)"
     card(48, 300, 340, 170, ["Passed: 17", "Auth 7 · Dash 3 · PIM 5", "Time 2"]) +
     card(420, 300, 340, 170, ["Failed: 2 · Blocked: 2", "Both test-design flags", "Leave entitlement ×2"]) +
     card(792, 300, 360, 170, ["Regression 9/11", "Retest N/A (no fixes)", "Not Run: 33"]) + "\n" +
-    card(48, 490, 1104, 90, ["55-bar check:  17 + 2 + 2 + 33 = 54  ·  defect total matches bugs/ (templates only)"]) + "\n" + foot(7), 7)
+    card(48, 490, 1104, 90, ["54-case check:  17 + 2 + 2 + 33 = 54  ·  defect total matches bugs/ (templates only)"]) + "\n" + foot(7), 7)
 
 P["08-final"] = svg(head("Final report — verdict: none given", "Partial cycle · risks separated · next actions ordered") + "\n" +
     card(48, 160, 540, 150, ["Summary", "Auth/session + search + validation", "green with evidence; punch cycle green"]) +

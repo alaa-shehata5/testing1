@@ -12,11 +12,13 @@
   positive/negative/boundary/state/UI/compat; smoke-first, REG-001–011 frozen.
 - **1:10–1:40 Cases zoom.** Suite excerpt: REQ→TC→steps→Expected→Status;
   Expected Results frozen, per-TC evidence naming.
-- **1:40–2:15 Deep dive (no bug — by honesty).** E2001 chain: create → ID
-  search → DOB persists → regression green. Plus the two test-design flags
-  and the voided Search-box probe that almost became a false bug.
-- **2:15–2:40 RTM.** REQ-PIM-001→TC-PIM-001/003→Pass; REQ-LEAVE-002→Blocked
-  (entitlement); defect column blank because the count is zero.
+- **1:40–2:15 Deep dive (no bug — by honesty).** E2001: TC-PIM-001 verifies
+  creation and retrieval; TC-PIM-007 verifies employee-detail persistence.
+  Show regression separately: REG-004/006 use E2091 and REG-005 uses E2094.
+  Then cover the two test-design flags and the voided Search-box probe.
+- **2:15–2:40 RTM.** REQ-PIM-001→TC-PIM-001 (Pass), REQ-PIM-003→TC-PIM-007
+  (Pass), and REQ-LEAVE-002→Blocked (entitlement); defect links are blank
+  because no SUT defects were verified.
 - **2:40–3:00 Metrics + close.** 54 total · 21 executed (38.9%) · 17 pass
   (81.0%) · 0 defects · regression 9/11 · no release verdict on a partial
   cycle. "Complete plan, suite, RTM, evidence, and report in GitHub."
@@ -24,6 +26,7 @@
 ## Portfolio images
 
 `demo-assets/01-overview.svg` … `08-final.svg` (1200×675): 1 Overview, 2 Test
-Plan, 3 Suite excerpt, 4 RTM, 5 Top finding (honest zero), 6 Evidence
-discipline, 7 Dashboard, 8 Final. Regenerate: `python3 demo/make_portfolio_svgs.py`
-(all text is plain XML — edit values in the script and re-export).
+Plan, 3 Suite excerpt, 4 RTM, 5 Top finding (honest zero), 6 annotated E2001
+evidence, 7 Dashboard, 8 Final. Regenerate with
+`python3 demo/make_portfolio_svgs.py`; the evidence slide reads its source
+screenshot from `evidence/smoke/`.

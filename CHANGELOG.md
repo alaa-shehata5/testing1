@@ -17,4 +17,5 @@
 - Planned-input dispute resolved by conforming E2001 rerun: TC-PIM-001/002/004/005/007 pass with specified data (Aarav/E2001/ZzzNoMatch); name free-text proven submittable as filter
 - Phase 10: retest N/A (no fixes supplied); regression 9/11 Pass 2 Blocked on same build (REG-006 edit persistence, REG-010 full punch cycle); TC-PIM-007 + TC-TIME-001/002 pass folded in
 - Phase 11: partial-cycle final QA report issued (38.9% execution, no release verdict, What-I-could-not-verify)
-- Phase 12: README sales front door with real numbers; bugs/ zero-defect statement + filing template guide; evidence PNGs and execution workbooks whitelisted in .gitignore
+- Phase 12: README sales front door with real numbers and embedded evidence; bugs/ zero-defect statement + filing template guide; evidence PNGs and execution workbooks whitelisted in .gitignore
+- Phase 13: case study, three-minute demo script, and eight portfolio slides; corrected requirement/test mappings and screenshot counts; annotated E2001 evidence slide

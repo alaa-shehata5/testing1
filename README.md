@@ -37,11 +37,18 @@ Functional, smoke-first, regression subset REG-001–011, exploratory charters (
 
 ## Featured verification (no bug to feature — showing the chain instead)
 
-**E2001 end-to-end:** requirement REQ-PIM-001 → cases TC-PIM-001/007 → executed Pass → evidence `TC-PIM-001-E2001-saved.png`, `TC-PIM-001-E2001-in-list.png`, `TC-PIM-007-E2001-detail.png` → regression REG-004/005/006 green on the same build → no defect. This requirement→case→execution→evidence→regression chain is the portfolio's core exhibit.
+**E2001 verification:** REQ-PIM-001 → TC-PIM-001 (Pass) → creation and employee-list evidence; REQ-PIM-003 → TC-PIM-007 (Pass) → E2001 detail evidence. Regression REG-004/005/006 are separate same-build checks against E2091/E2094; they are not E2001 retests. No defect was filed.
 
 ## Evidence
 
-36 per-TC screenshots in `evidence/smoke/` + `evidence/regression/`, each named for its case (never `Screenshot1.png`) and answering "What am I looking at?". Start here: `evidence/smoke/TC-PIM-004-Aarav-search.png`, `evidence/smoke/TC-PIM-002-E2001-duplicate.png`, `evidence/regression/REG-010-my-records.png`.
+43 screenshots total: 33 in `evidence/smoke/` and 10 in `evidence/regression/`. Smoke evidence is named for test cases; regression evidence is named for regression checks. These two E2001 screenshots show the employee-list result and the matching-name search:
+
+<p align="center">
+  <img src="evidence/smoke/TC-PIM-001-E2001-in-list.png" alt="PIM employee list filtered to E2001, with exactly one Aarav Sharma result" width="48%">
+  <img src="evidence/smoke/TC-PIM-004-Aarav-search.png" alt="PIM employee list filtered by Aarav Sharma, with E2001 as the matching result" width="48%">
+</p>
+
+More examples: `evidence/smoke/TC-PIM-002-E2001-duplicate.png` and `evidence/regression/REG-010-my-records.png`.
 
 ## Deliverables
 

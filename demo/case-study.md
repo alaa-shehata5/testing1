@@ -27,7 +27,7 @@ no UI automation claimed.
 ✓ Test plan (11 techniques, risk matrix, frozen REG subset) · ✓ Derived
 requirements (20 REQs, Observed/Derived split) · ✓ 54 cases · ✓ RTM (20×54,
 100% planned traceability, script-verified) · ✓ Execution log + summary ·
-✓ Evidence (45 per-TC screenshots) · ✓ Regression + retest workbooks ·
+✓ Evidence (43 screenshots: 33 smoke + 10 regression) · ✓ Regression + retest workbooks ·
 ✓ Final QA report · ✓ Exploratory log (incl. one voided probe error, documented)
 
 ## Results (actual numbers only)
@@ -42,8 +42,9 @@ requirements (20 REQs, Observed/Derived split) · ✓ 54 cases · ✓ RTM (20×5
 - Top open risk: the leave submit→approve chain is unverified (entitlement
   setup pending) — stated plainly, no release verdict given.
 
-Full evidence chain (requirement → case → execution → screenshot → regression)
-is browsable in this repo, starting at the [README](../README.md).
+Requirement-to-case-to-execution evidence is browsable in this repo, starting
+at the [README](../README.md). Regression results are reported separately;
+they use their own employee records rather than serving as E2001 retests.
 
 ## Disclaimer
 
